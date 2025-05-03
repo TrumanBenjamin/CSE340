@@ -1,0 +1,14 @@
+<%- include('../partials/header.ejs') %>
+<h1><%= vehicle.year %> <%= vehicle.make %> <%= vehicle.model %></h1>
+
+<div class="vehicle-details">
+    <img src="<%= vehicle.image_path %>" alt="<%= vehicle.make %> <%= vehicle.model %>">
+    <p><strong>Price:</strong> $<%= vehicle.price.toLocaleString() %></p>
+    <p><strong>Mileage:</strong> <%= vehicle.mileage.toLocaleString() %> miles</p>
+    <p><strong>Color:</strong> <%= vehicle.color %></p>
+    <p><strong>Description:</strong> <%= vehicle.description %></p>
+</div>
+
+<a href="/inventory/<%= vehicle.category %>">Back to <%= vehicle.category %>s</a>
+
+<%- include('../partials/footer.ejs') %>

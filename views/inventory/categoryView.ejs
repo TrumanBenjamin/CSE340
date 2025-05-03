@@ -1,0 +1,21 @@
+<%- include('../partials/header') %>
+
+<h1><%= title %></h1>
+
+<div class="vehicle-list">
+    <% if (vehicles.length > 0) { %>
+        <% vehicles.forEach(vehicle => { %>
+            <div class="vehicle-card">
+                <a href="/inventory/detail/<%= vehicle.id %>">
+                    <img src="<%= vehicle.image %>" alt="<%= vehicle.make %> <%= vehicle.model %>">
+                    <h2><%= vehicle.make %> <%= vehicle.model %> - $<%= vehicle.price.toLocaleString() %></h2>
+                    <p><%= vehicle.year %> | Mileage: <%= vehicle.mileage.toLocaleString() %> miles</p>
+                </a>
+            </div>
+        <% }) %>
+    <% } else { %>
+        <p>No vehicles available in this category.</p> 
+    <% } %>
+</div>
+
+<%- include('../partials/footer') %>

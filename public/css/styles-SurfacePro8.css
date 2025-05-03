@@ -5,8 +5,13 @@
   box-sizing: border-box;
 }
 
-/* Truman Benjamin */
-/* header.ejs */
+/* General Styles */
+body {
+  font-family: Arial, sans-serif;
+  height: 100vh;
+}
+
+/* Header Styles */
 #top-header {
   display: flex;
   justify-content: space-between;
@@ -39,7 +44,7 @@
   text-decoration: underline;
 }
 
-/* navigation.ejs */
+/* Navigation */
 nav {
   background-color: black;
   padding: 10px 0;
@@ -60,33 +65,22 @@ nav ul li {
   font-weight: bold;
   transition: transform 0.3s ease-in-out;
 }
-nav ul li a {
-  color: white;
-  text-decoration: none;
-  display: block; /* Helps padding work */
-}
-
 
 nav ul li:hover {
   transform: translateY(-3px);
 }
 
-/* New split div hero container styles */
-body {
-  font-family: Arial, sans-serif;
-  height: 100vh;
-}
-
-
-/* index.ejs */
+/* Split Hero Section */
 .welcome {
   margin: 40px;
 }
+
 .split-container {
   display: flex;
   height: 80vh;
   position: relative;
 }
+
 .carimage {
   width: 100%;
 }
@@ -109,6 +103,7 @@ body {
   margin: 10px;
 }
 
+/* CTA Button */
 .cta-button {
   display: inline-block;
   padding: 15px 30px;
@@ -126,18 +121,18 @@ body {
   background-color: #0056b3;
 }
 
+/* Image Styling */
 .image {
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 0;
-
 }
 
 .image img {
   max-width: 90%;
   height: auto; 
-  box-shadow: 0px 4px 8px rgba(0,0,0,0.2,); 
+  box-shadow: 0px 4px 8px rgba(0,0,0,0.2); 
 }
 
 /* Reviews and Upgrades Section */
@@ -189,6 +184,7 @@ body {
   justify-content: center;
   align-items: center;
 }
+
 .upgrade-box {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -216,10 +212,67 @@ body {
   max-width: 20%;
   height: auto;
   margin-bottom: 10px;
-
 }
-/* footer */
-.copyright { 
+
+/* Vehicle Details Page */
+.vehicle-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.vehicle-details {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 800px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.vehicle-image {
+  width: 50%;
+  max-width: 400px;
+  border-radius: 8px;
+}
+
+.vehicle-info {
+  width: 45%;
+}
+
+.vehicle-info h1 {
+  font-size: 1.8rem;
+  color: #333;
+}
+
+.vehicle-info p {
+  font-size: 1.2rem;
+  color: #555;
+  margin: 5px 0;
+}
+
+/* Responsive Design for Vehicle Page */
+@media (max-width: 768px) {
+  .vehicle-details {
+      flex-direction: column;
+      text-align: center;
+  }
+  .vehicle-image, .vehicle-info {
+      width: 100%;
+  }
+}
+
+/* Footer */
+.copyright {
   margin: 0;
   padding: 10px;
 }
