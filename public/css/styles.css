@@ -114,7 +114,7 @@ body {
   padding: 15px 30px;
   margin-top: 20px;
   background-color: #007BFF;
-  color: white;
+  color: black;
   text-transform: uppercase;
   font-weight: bold;
   text-decoration: none;
@@ -197,7 +197,7 @@ body {
 
 .upgrade-item {
   background-color: #007BFF;
-  color: white;
+  color: black;
   padding: 10px 15px;
   text-decoration: none;
   border-radius: 5px;
