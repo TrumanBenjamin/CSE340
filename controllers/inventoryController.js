@@ -35,21 +35,7 @@ exports.showCategory = async (req, res) => {
 }
 
 
-exports.showVehicle = async (req, res) => {
-  const id = req.params.id
-  try {
-    const nav = await utilities.getNav()
-    const vehicle = await invModel.getVehicleById(id)
-    if (vehicle) {
-      res.render("inventory/vehicleDetails", { vehicle, nav })
-    } else {
-      res.status(404).send("Vehicle not found")
-    }
-  } catch (error) {
-    console.error("Error loading vehicle details:", error)
-    res.status(500).send("Error loading vehicle details")
-  }
-}
+
 
 exports.buildDetailView = async function (req, res, next) {
   const invId = req.params.inv_id;
