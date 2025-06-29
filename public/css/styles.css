@@ -15,11 +15,47 @@
 }
 
 .siteName a {
-  font-size: 36px;
-  font-weight: bold;
+  display: inline-block;
+  font-size: 50px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  padding-left: 20px;
+  
+  /* gradient-filled text */
+  background: linear-gradient(90deg, #0057ad 0%, #00c0ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+  position: relative;
   text-decoration: none;
-  color: black;
+  transition: transform 0.3s ease;
 }
+
+.siteName a:hover {
+  transform: translateY(-2px);
+}
+
+.siteName a::after {
+  content: '';
+  position: absolute;
+  left: 40px;
+  right: 20px;
+  bottom: -4px;
+  height: 3px;
+  background: linear-gradient(90deg, #0057ad 0%, #00c0ff 100%);
+  border-radius: 2px;
+  opacity: 0;
+  transform: translateY(4px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.siteName a:hover::after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 
 #tools {
   position: absolute;
@@ -43,6 +79,7 @@
 nav {
   background-color: black;
   padding: 10px 0;
+  border-radius: 5px;
 }
 
 nav ul {
@@ -74,7 +111,7 @@ nav ul li:hover {
 /* New split div hero container styles */
 body {
   font-family: Arial, sans-serif;
-  height: 100vh;
+  min-height: 80vh;
 }
 
 
@@ -181,6 +218,11 @@ body {
   body, .split-container, .content, footer {
     background-color: white;
   }
+  body {
+    border: 5px solid #0084ff;
+    border-radius: 10px;
+    padding: 10px;
+  }
 } 
 
 .upgrades {
@@ -222,4 +264,222 @@ body {
 .copyright { 
   margin: 0;
   padding: 10px;
+}
+
+
+#inv-display {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.namePrice h2 a {
+  text-decoration: none;
+  color: #0056b3;
+}
+
+#inv-display li {
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 1rem;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-decoration: none;
+}
+
+#inv-display li img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+  margin-bottom: 0.75rem;
+}
+
+#inv-display li h2 {
+  font-size: 1.25rem;
+  text-decoration: none;
+  margin: 0.5rem 0;
+}
+#inv-display li .price {
+  color: #555;
+  font-weight: 300;
+}
+#inv-display > li:only-child {
+  max-width: 100%;
+  justify-self: center;
+}
+
+.vehicle-title {
+  display: block;
+  width: 100%;
+  max-width: 960px;
+  margin: 2rem auto;
+  padding: 0.75rem 1.5rem;
+  font-size: 2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: #fff;
+  -webkit-text-stroke: 1.5px black;
+  background: linear-gradient(135deg, #1e90ff 0%, #00bfff 100%);
+  border-radius: 5px;
+}
+
+
+/* ------------------------------------------------------------
+   Detail‐page wrapper & title
+   ------------------------------------------------------------ */
+.detail-wrapper {
+  max-width: 960px;
+  margin: 2rem auto;
+}
+
+.detail-wrapper > h1 {
+  font-size: 1rem;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+}
+
+/* ------------------------------------------------------------
+   Card layout
+   ------------------------------------------------------------ */
+.vehicle-detail-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+}
+
+/* ------------------------------------------------------------
+   Left column – the photo
+   ------------------------------------------------------------ */
+.vehicle-image {
+  display: flex;
+  align-items: center;
+  justify-content: center; /* if you also want it horizontally centered */
+  /* optionally give it a min-height if you want extra space: */
+  /* min-height: 200px; */
+}
+
+.vehicle-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  border-radius: 4px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+/* ------------------------------------------------------------
+   Right column – the info
+   ------------------------------------------------------------ */
+.vehicle-info {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.vehicle-info h2 {
+  font-size: 1.5rem;
+  margin: 0 0 1rem;
+  color: #333;
+}
+
+.vehicle-info p {
+  margin: 0.5rem 0;
+  line-height: 1.6;
+  color: #444;
+  font-weight: 500;
+}
+
+.vehicle-info p strong {
+  display: inline-block;
+  text-transform: uppercase;
+  width: 100px;       /* label width */
+  font-weight: 600;
+  color: #555;
+  margin-right: 1rem;
+}
+.vehicle-info p:nth-of-type(-n+3) {
+  background-color: #f3f9ff;
+  border: 1px solid #daecff;     /* soft blue border */
+  border-radius: 6px;            /* rounded corners */
+  padding: 0.25rem 1rem;          /* inner spacing */
+  margin-bottom: 0.75rem;         /* space below each block */
+  color: #333;                    /* dark text for contrast */
+  font-weight: 600;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  width: 65%;
+  justify-content: center;
+}
+
+/* ------------------------------------------------------------
+   Back link (if you add one below the container)
+   ------------------------------------------------------------ */
+.back-link {
+  display: inline-block;
+  margin: 2rem auto 0;
+  color: #3498db;
+  text-decoration: none;
+  font-weight: 500;
+}
+.back-link:hover {
+  text-decoration: underline;
+}
+
+/* ------------------------------------------------------------
+   Responsive: stack to one column on narrow screens
+   ------------------------------------------------------------ */
+@media (max-width: 700px) {
+  .vehicle-detail-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+.error {
+  color: #003369;
+  text-align: center;
+}
+.error main {
+  margin-top: 2rem;
+}
+.error h1 {
+  color:crimson;
+}
+footer {
+  color: #003369;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+footer a {
+  text-decoration: none;
+  color: #0056b3;
+  font-weight: 800;
+}
+.category-title {
+  display: flex;
+  align-items: center;
+  width: fit-content;
+  margin: 2rem auto;
+  gap: 0.75rem;                  /* space between text and bars */
+  padding-bottom: 0.5rem;        /* room for underline */
+  font-size: 2.5rem;
+  font-weight: 600;
+  color: #0057ad;                /* deep blue text */
+}
+
+.category-title::before,
+.category-title::after {
+  content: '';
+  display: block;
+  width: 3px;                    /* thickness of vertical bars */
+  height: 1.2em;                 /* roughly the text height */
+  background: #00a2ff;           /* same light blue as underline */
 }

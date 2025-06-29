@@ -1,14 +1,30 @@
-<%- include('../partials/header.ejs') %>
-<h1><%= vehicle.year %> <%= vehicle.make %> <%= vehicle.model %></h1>
+<!-- <%- include('../partials/header') %>
 
-<div class="vehicle-details">
-    <img src="<%= vehicle.image_path %>" alt="<%= vehicle.make %> <%= vehicle.model %>">
-    <p><strong>Price:</strong> $<%= vehicle.price.toLocaleString() %></p>
-    <p><strong>Mileage:</strong> <%= vehicle.mileage.toLocaleString() %> miles</p>
-    <p><strong>Color:</strong> <%= vehicle.color %></p>
-    <p><strong>Description:</strong> <%= vehicle.description %></p>
+<div class="vehicle-detail-container">
+  <div class="vehicle-detail-card">
+    <div class="vehicle-image">
+      <img src="/<%= vehicle.image_path %>"
+           alt="<%= vehicle.make %> <%= vehicle.model %>">
+    </div>
+    <div class="vehicle-info">
+      <h1><%= vehicle.year %> <%= vehicle.make %> <%= vehicle.model %></h1>
+      <div class="vehicle-price">
+        $<%= vehicle.price.toLocaleString() %>
+      </div>
+      <ul class="vehicle-specs">
+        <li><strong>Mileage:</strong> <%= vehicle.mileage.toLocaleString() %> miles</li>
+        <li><strong>Color:</strong> <%= vehicle.color %></li>
+      </ul>
+      <div class="vehicle-description">
+        <h2>Description</h2>
+        <p><%= vehicle.description %></p>
+      </div>
+      <a class="back-link"
+         href="/inv/type/<%= vehicle.classification_id %>">
+        ← Back to <%= title %>
+      </a>
+    </div>
+  </div>
 </div>
 
-<a href="/inventory/<%= vehicle.category %>">Back to <%= vehicle.category %>s</a>
-
-<%- include('../partials/footer.ejs') %>
+<%- include('../partials/footer') %> -->
