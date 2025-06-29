@@ -10,11 +10,11 @@ router.get(
   util.handleErrors(inventoryController.showCategory)
 );
 
-// Single‐vehicle view
-router.get(
-  '/vehicle/:id',
-  util.handleErrors(inventoryController.showVehicle)
-);
+// // Single‐vehicle view 
+// router.get(
+//   '/vehicle/:id',
+//   util.handleErrors(inventoryController.showVehicle)
+// );
 
 // Classification grid
 router.get(
@@ -22,7 +22,7 @@ router.get(
   util.handleErrors(inventoryController.buildByClassificationId)
 );
 
-// Detail view (legacy/detail route)
+// Detail view
 router.get(
   '/detail/:inv_id',
   util.handleErrors(inventoryController.buildDetailView)
