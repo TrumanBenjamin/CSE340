@@ -30,6 +30,8 @@ app.use(express.static('public'))
  *************************/
 app.use(expresslayouts)
 app.use(static)
+app.use(express.urlencoded({extended: true}))
+app.use('/inv', require('./routes/inventory'))
 
 
 //Index Route

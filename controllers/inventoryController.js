@@ -3,15 +3,16 @@ const utilities = require("../utilities")
 
 
 exports.buildByClassificationId = async function (req, res) {
-  const classification_id = req.params.classificationId
   try {
-    const data = await invModel.getInventoryByClassificationId(classification_id)
-    const grid = await utilities.buildClassificationGrid(data)
+    const classificationId = req.params.classificationId
+    const className = (await invModel.getClassificationById(classificationId)
+    )?.classification_name ?? 'Vehicles';
+    const vehicles = await invModel.getInventoryByClassificationId(classificationId)
+    const grid = await utilities.buildClassificationGrid(vehicles)
     const nav = await utilities.getNav()
-    const className = data[0].classification_name
 
-    res.render("./inventory/classification", {
-      title: `${className} vehicles`,
+    res.render("inventory/classification", {
+      title: `${className} Vehicles`,
       nav,
       grid,
     })
@@ -22,18 +23,17 @@ exports.buildByClassificationId = async function (req, res) {
 }
 
 
-exports.showCategory = async (req, res) => {
-  const category = req.params.category
-  try {
-    const nav = await utilities.getNav()
-    const vehicles = await invModel.getVehiclesByCategory(category)
-    res.render("inventory/categoryView", { category, vehicles, nav })
-  } catch (error) {
-    console.error("Error loading category:", error)
-    res.status(500).send("Error loading inventory")
-  }
-}
-
+// exports.showCategory = async (req, res) => {
+//   const category = req.params.category
+//   try {
+//     const nav = await utilities.getNav()
+//     const vehicles = await invModel.getVehiclesByCategory(category)
+//     res.render("inventory/categoryView", { category, vehicles, nav })
+//   } catch (error) {
+//     console.error("Error loading category:", error)
+//     res.status(500).send("Error loading inventory")
+//   }
+// }
 
 
 
@@ -52,3 +52,140 @@ exports.buildDetailView = async function (req, res, next) {
     next(error);
   }
 }
+
+
+exports.buildManagementView = async (req, res, next) => {
+  try {
+    const nav = await utilities.getNav()
+    const message = req.query.message || null
+    res.render('inventory/management', {
+      title : 'Inventory Management',
+      nav,
+      message,
+    })
+  } catch (error) {
+    next(error)
+  }
+}
+
+
+exports.buildAddClassificationView = async (req, res, next) => {
+  try {
+    const nav = await utilities.getNav()
+    res.render('inventory/add-classification', {
+      title : 'Add New Classification',
+      nav,
+      errors : null,
+      classification_name : null,
+    })
+  } catch (error) {
+    next(error)
+  }
+}
+
+
+exports.processAddClassification = async (req, res, next) => {
+  try {
+    const nav = await utilities.getNav()
+    let {classification_name} = req.body
+    const errors = []
+
+    //server-side validation
+    if (!classification_name) {
+      errors.push('Classification name is required.')
+    } else if (!/^[A-Za-z0-9]+$/.test(classification_name)) {
+      errors.push('Only letters and numbers allowed- no spaces or special characters.')
+    }
+
+    if (errors.length) {
+      //re-render form with errors and sticky input
+      return res.status(400).render('inventory/add-classification', {
+        title : 'Add New Classification', 
+        nav,
+        errors,
+        classification_name,
+      })
+    }
+
+    // insert into DB
+    await invModel.addClassification(classification_name.trim())
+
+    // redirect back to management with a sucess message
+    const msg = encodeURIComponent('Classification added successfully.')
+    return res.redirect('/inv?message=' + msg)
+  } catch (error) {
+    return next(error)
+  }
+}
+
+
+// Render the Add Inventory Form
+exports.buildAddInventoryView = async (req, res, next) => {
+  try {
+    const nav = await utilities.getNav()
+    const classificationList = await utilities.buildClassificationList()
+    res.render('inventory/add-inventory', {
+      title : 'Add New Inventory Item',
+      nav,
+      classificationList,
+      errors : null,
+      invData : {},
+    })
+  } catch (error) {
+    next(error)
+  }
+}
+
+
+// Handle Add Inventory POST
+exports.processAddInventory = async (req, res, next) => {
+  try {
+    const nav     = await utilities.getNav();
+
+    // 1️⃣ First pull your form data into invData
+    const invData = { ...req.body }; 
+
+    // 2️⃣ Now build the dropdown HTML with the selectedId
+    const classificationList =
+      await utilities.buildClassificationList(invData.classification_id);
+
+    // 3️⃣ Collect validation errors
+    const errors = [];
+    if (!invData.classification_id) errors.push('Please select a classification.');
+    if (!invData.inv_make)          errors.push('Make is required.');
+    if (!invData.inv_model)         errors.push('Model is required.');
+    if (!invData.inv_color) {
+      errors.push('Color is required.')
+    } else if (!/^[A-Za-z0-9 ]+$/.test(invData.inv_color)) {
+      errors.push('Color may only contain letters, numbers and spaces.')
+    }
+    if (!invData.inv_year || isNaN(invData.inv_year))
+      errors.push('Valid year is required.');
+    if (!invData.inv_description)   errors.push('Description is required.');
+    if (!invData.inv_image)         errors.push('Image URL is required.');
+    if (!invData.inv_thumbnail)     errors.push('Thumbnail URL is required.');
+    if (!invData.inv_price || isNaN(invData.inv_price))
+      errors.push('Valid price is required.');
+    if (!invData.inv_miles || isNaN(invData.inv_miles))
+      errors.push('Valid mileage is required.');
+
+    // 4️⃣ If any errors, re-render with **literal** title + sticky data
+    if (errors.length) {
+      return res.status(400).render('inventory/add-inventory', {
+        title              : 'Add New Inventory Item',
+        nav,
+        classificationList,
+        errors,
+        invData,
+      });
+    }
+
+    // 5️⃣ All good → insert & redirect
+    await invModel.addInventoryItem(invData);
+    const msg = encodeURIComponent('Inventory item added successfully.');
+    return res.redirect('/inv?message=' + msg);
+
+  } catch (error) {
+    next(error);
+  }
+};

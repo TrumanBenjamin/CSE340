@@ -1,0 +1,38 @@
+<% /* Add a new classification */ %>
+
+<% if (title) { %>
+  <h1 class="page-title"><%= title %></h1>
+<% } %>
+
+<% /* server-side validation errors */ %>
+<% if (errors && errors.length) { %>
+  <ul class="error-list">
+    <% errors.forEach(err => { %>
+      <li><%= err %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<p class="instruction">
+  Classification names may only contain letters and numbers—no spaces or special characters.
+</p>
+
+<form 
+  id="add-classification-form"
+  method="POST" 
+  action="/inv/add-classification"
+  novalidate
+>
+  <label for="classificationName">Name</label>
+  <input
+    type="text"
+    name="classification_name"
+    id="classificationName"
+    required
+    pattern="[A-Za-z0-9]+"
+    title="Only letters and numbers—no spaces or special symbols"
+    value="<%= classification_name || '' %>"
+  >
+
+  <button type="submit">Add Classification</button>
+</form>

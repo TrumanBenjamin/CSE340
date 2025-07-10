@@ -1,0 +1,111 @@
+<% if (title) { %>
+  <h1 class='page-title'><%= title %></h1>
+<% } %>
+
+<% if (errors && errors.length) { %>
+  <ul class='error-list'>
+    <% errors.forEach(err => { %>
+      <li><%= err %></li>
+    <% }) %>
+  </ul>
+<% } %>
+
+<form id='add-inventory-form' method='POST' action='/inv/add-inventory' novalidate>
+
+  <div class='form-group'>
+  <label for='classificationList'>Classification</label>
+  <!-- unescaped so the <select> markup renders correctly: -->
+  <%- classificationList %>
+</div>
+
+  <label for='invMake'>Make</label>
+  <input
+    type='text'
+    name='inv_make'
+    id='invMake'
+    required
+    pattern='[A-Za-z0-9 ]+'
+    title='Letters, numbers, and spaces only'
+    value='<%= invData.inv_make || '' %>'
+  >
+
+  <label for='invModel'>Model</label>
+  <input
+    type='text'
+    name='inv_model'
+    id='invModel'
+    required
+    pattern='[A-Za-z0-9 ]+'
+    value='<%= invData.inv_model || '' %>'
+  >
+
+  <label for="invColor">Color</label>
+  <input
+    type="text"
+    name="inv_color"
+    id="invColor"
+    required
+    pattern="[A-Za-z0-9 ]+"
+    title="Letters, numbers, and spaces only"
+    value="<%= invData.inv_color || '' %>"
+  >
+
+  <label for='invYear'>Year</label>
+  <input
+    type='number'
+    name='inv_year'
+    id='invYear'
+    required
+    min='1900'
+    max='<%= new Date().getFullYear() + 1 %>'
+    value='<%= invData.inv_year || '' %>'
+  >
+
+  <label for='invDescription'>Description</label>
+  <textarea
+    name='inv_description'
+    id='invDescription'
+    required
+  ><%= invData.inv_description || '' %></textarea>
+
+  <label for='invImage'>Image URL</label>
+  <input
+    type='url'
+    name='inv_image'
+    id='invImage'
+    required
+    value='<%= invData.inv_image || '' %>'
+  >
+
+  <label for='invThumbnail'>Thumbnail URL</label>
+  <input
+    type='url'
+    name='inv_thumbnail'
+    id='invThumbnail'
+    required
+    value='<%= invData.inv_thumbnail || '' %>'
+  >
+
+  <label for='invPrice'>Price</label>
+  <input
+    type='number'
+    name='inv_price'
+    id='invPrice'
+    required
+    step='0.01'
+    min='0'
+    value='<%= invData.inv_price || '' %>'
+  >
+
+  <label for='invMiles'>Miles</label>
+  <input
+    type='number'
+    name='inv_miles'
+    id='invMiles'
+    required
+    min='0'
+    value='<%= invData.inv_miles || '' %>'
+  >
+
+  <button type='submit'>Add Inventory</button>
+</form>
