@@ -294,7 +294,7 @@ body {
 }
 
 #inv-display li img {
-  max-width: 100%;
+  max-width: 150px;
   height: auto;
   border-radius: 4px;
   margin-bottom: 0.75rem;
@@ -331,9 +331,7 @@ body {
 }
 
 
-/* ------------------------------------------------------------
-   Detail‐page wrapper & title
-   ------------------------------------------------------------ */
+
 .detail-wrapper {
   max-width: 960px;
   margin: 2rem auto;
@@ -345,9 +343,7 @@ body {
   margin-bottom: 1.5rem;
 }
 
-/* ------------------------------------------------------------
-   Card layout
-   ------------------------------------------------------------ */
+
 .vehicle-detail-container {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -358,15 +354,11 @@ body {
   overflow: hidden;
 }
 
-/* ------------------------------------------------------------
-   Left column – the photo
-   ------------------------------------------------------------ */
+
 .vehicle-image {
   display: flex;
   align-items: center;
-  justify-content: center; /* if you also want it horizontally centered */
-  /* optionally give it a min-height if you want extra space: */
-  /* min-height: 200px; */
+  justify-content: center; 
 }
 
 .vehicle-image img {
@@ -378,9 +370,7 @@ body {
   box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
 
-/* ------------------------------------------------------------
-   Right column – the info
-   ------------------------------------------------------------ */
+
 .vehicle-info {
   padding: 1.5rem;
   display: flex;
@@ -403,27 +393,24 @@ body {
 .vehicle-info p strong {
   display: inline-block;
   text-transform: uppercase;
-  width: 100px;       /* label width */
+  width: 100px; 
   font-weight: 600;
   color: #555;
   margin-right: 1rem;
 }
 .vehicle-info p:nth-of-type(-n+3) {
   background-color: #f3f9ff;
-  border: 1px solid #daecff;     /* soft blue border */
-  border-radius: 6px;            /* rounded corners */
-  padding: 0.25rem 1rem;          /* inner spacing */
-  margin-bottom: 0.75rem;         /* space below each block */
-  color: #333;                    /* dark text for contrast */
+  border: 1px solid #daecff;
+  border-radius: 6px;
+  padding: 0.25rem 1rem;
+  margin-bottom: 0.75rem;
+  color: #333;
   font-weight: 600;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   width: 65%;
   justify-content: center;
 }
 
-/* ------------------------------------------------------------
-   Back link (if you add one below the container)
-   ------------------------------------------------------------ */
 .back-link {
   display: inline-block;
   margin: 2rem auto 0;
@@ -435,9 +422,6 @@ body {
   text-decoration: underline;
 }
 
-/* ------------------------------------------------------------
-   Responsive: stack to one column on narrow screens
-   ------------------------------------------------------------ */
 @media (max-width: 700px) {
   .vehicle-detail-container {
     grid-template-columns: 1fr;
@@ -468,18 +452,169 @@ footer a {
   align-items: center;
   width: fit-content;
   margin: 2rem auto;
-  gap: 0.75rem;                  /* space between text and bars */
-  padding-bottom: 0.5rem;        /* room for underline */
+  gap: 0.75rem;
+  padding-bottom: 0.5rem;
   font-size: 2.5rem;
   font-weight: 600;
-  color: #0057ad;                /* deep blue text */
+  color: #0057ad; 
 }
 
 .category-title::before,
 .category-title::after {
   content: '';
   display: block;
-  width: 3px;                    /* thickness of vertical bars */
-  height: 1.2em;                 /* roughly the text height */
-  background: #00a2ff;           /* same light blue as underline */
+  width: 3px; 
+  height: 1.2em; 
+  background: #00a2ff;
+}
+
+
+
+
+/* Add Inventory Page */
+#add-inventory {
+  background: #fff;
+  max-width: 500px;
+  margin: 3rem auto;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+#add-inventory .page-title {
+  text-align: center;
+  font-size: 1.75rem;
+  margin-bottom: 2rem;
+}
+
+#add-inventory .notice {
+  background: #e6ffed;
+  border: 1px solid #4dff6f;
+  color: #060;
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+#add-inventory .error-list {
+  background: #fdecea;
+  border: 1px solid #f5c6cb;
+  color: #a71d2a;
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+#add-inventory .form-group {
+  margin-bottom: 1rem;
+}
+
+#add-inventory label {
+  display: block;
+  margin: 0 0 0.5rem 1rem;
+  font-weight: 600;
+  font-family: Geneva, Tahoma, sans-serif;
+}
+
+#add-inventory input,
+#add-inventory select,
+#add-inventory textarea {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ccc;
+  margin-bottom: 1rem;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
+}
+
+#add-inventory button[type="submit"] {
+  width: 100%;
+  padding: 0.75rem;
+  background: #1e90ff;
+  color: #fff;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-top: 1rem;
+  font-weight: 600;
+  transition: background-color 0.3s ease-in-out;
+}
+
+#add-inventory button[type="submit"]:hover {
+  background: #3d9eff;
+}
+
+
+/* Add Classification Page */
+#add-classification {
+  background: #fff;
+  max-width: 500px;
+  margin: 3rem auto;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+/* —— title —— */
+#add-classification .page-title {
+  text-align: center;
+  font-size: 1.75rem;
+  margin-bottom: 1.5rem;
+}
+
+/* —— error list —— */
+#add-classification .error-list {
+  background: #fdecea;
+  border: 1px solid #f5c6cb;
+  color: #a71d2a;
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 1rem;
+}
+
+/* —— instruction text —— */
+#add-classification .instruction {
+  font-style: italic;
+  color: #555;
+  margin: 0 1rem 1.5rem;
+  text-align: center;
+}
+
+/* —— labels & inputs —— */
+#add-classification label {
+  display: block;
+  margin: 0 0 0.5rem 1rem;
+  font-weight: 600;
+  font-family: Geneva, Verdana, sans-serif;
+}
+
+#add-classification input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+  box-sizing: border-box;
+}
+
+/* —— button —— */
+#add-classification button[type="submit"] {
+  width: auto;
+  display: block;
+  padding: 0.75rem 2rem;
+  margin: 1rem auto 0;
+  background: #1e90ff;
+  color: #fff;
+  font-size: 1rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease-in-out;
+}
+
+#add-classification button[type="submit"]:hover {
+  background: #3d9eff;
 }
