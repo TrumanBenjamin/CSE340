@@ -3,6 +3,7 @@
     <h1 class='page-title'><%= title %></h1>
   <% } %>
 
+  <% /* server-side validation errors */ %>
   <% if (errors && errors.length) { %>
     <ul class='error-list'>
       <% errors.forEach(err => { %>

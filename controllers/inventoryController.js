@@ -142,14 +142,11 @@ exports.processAddInventory = async (req, res, next) => {
   try {
     const nav     = await utilities.getNav();
 
-    // 1️⃣ First pull your form data into invData
     const invData = { ...req.body }; 
 
-    // 2️⃣ Now build the dropdown HTML with the selectedId
     const classificationList =
       await utilities.buildClassificationList(invData.classification_id);
 
-    // 3️⃣ Collect validation errors
     const errors = [];
     if (!invData.classification_id) errors.push('Please select a classification.');
     if (!invData.inv_make)          errors.push('Make is required.');
@@ -169,7 +166,6 @@ exports.processAddInventory = async (req, res, next) => {
     if (!invData.inv_miles || isNaN(invData.inv_miles))
       errors.push('Valid mileage is required.');
 
-    // 4️⃣ If any errors, re-render with **literal** title + sticky data
     if (errors.length) {
       return res.status(400).render('inventory/add-inventory', {
         title              : 'Add New Inventory Item',
@@ -180,7 +176,6 @@ exports.processAddInventory = async (req, res, next) => {
       });
     }
 
-    // 5️⃣ All good → insert & redirect
     await invModel.addInventoryItem(invData);
     const msg = encodeURIComponent('Inventory item added successfully.');
     return res.redirect('/inv?message=' + msg);
