@@ -547,6 +547,7 @@ footer a {
 }
 
 
+
 /* Add Classification Page */
 #add-classification {
   background: #fff;
@@ -557,14 +558,12 @@ footer a {
   box-shadow: 0 4px 16px rgba(0,0,0,0.1);
 }
 
-/* —— title —— */
 #add-classification .page-title {
   text-align: center;
   font-size: 1.75rem;
   margin-bottom: 1.5rem;
 }
 
-/* —— error list —— */
 #add-classification .error-list {
   background: #fdecea;
   border: 1px solid #f5c6cb;
@@ -574,7 +573,6 @@ footer a {
   margin-bottom: 1rem;
 }
 
-/* —— instruction text —— */
 #add-classification .instruction {
   font-style: italic;
   color: #555;
@@ -582,7 +580,6 @@ footer a {
   text-align: center;
 }
 
-/* —— labels & inputs —— */
 #add-classification label {
   display: block;
   margin: 0 0 0.5rem 1rem;
@@ -595,14 +592,12 @@ footer a {
   padding: 0.5rem 0.75rem;
   border: 1px solid #ccc;
   border-radius: 4px;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
   box-sizing: border-box;
 }
 
-/* —— button —— */
 #add-classification button[type="submit"] {
-  width: auto;
-  display: block;
+  width: 100%;
   padding: 0.75rem 2rem;
   margin: 1rem auto 0;
   background: #1e90ff;
@@ -616,5 +611,61 @@ footer a {
 }
 
 #add-classification button[type="submit"]:hover {
+  background: #3d9eff;
+}
+
+
+
+/* Inventory Management */
+#inventory-management {
+  background: #fff;
+  max-width: 500px;
+  margin: 3rem auto;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+}
+
+/* —— title —— */
+#inventory-management .page-title {
+  text-align: center;
+  font-size: 1.75rem;
+  margin-bottom: 2rem;
+}
+
+/* —— flash notice —— */
+#inventory-management .notice {
+  background: #e6ffed;
+  border: 1px solid #4dff6f;
+  color: #060;
+  padding: 0.75rem;
+  border-radius: 4px;
+  margin-bottom: 1.5rem;
+}
+
+/* —— link list —— */
+#inventory-management .inventory-management-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* —— link buttons —— */
+#inventory-management .inventory-management-links a {
+  display: block;
+  text-align: center;
+  background: #1e90ff;
+  color: #fff;
+  padding: 0.75rem;
+  border-radius: 4px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: background-color 0.3s ease-in-out;
+}
+
+#inventory-management .inventory-management-links a:hover {
   background: #3d9eff;
 }
